@@ -1,0 +1,72 @@
+---
+// Decorative node-and-line "knowledge graph" background used behind hero
+// bands, per the Network design direction. `compact` renders a smaller,
+// lighter-weight graph sized for the shorter inner-page hero bands so it
+// doesn't overpower short headings.
+interface Props {
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+---
+
+{
+  compact ? (
+    <svg
+      class="pointer-events-none absolute inset-0 h-full w-full opacity-40"
+      viewBox="0 0 1200 260"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <g stroke="#8b5cf6" stroke-width="1" opacity="0.35">
+        <line x1="100" y1="60" x2="300" y2="130" />
+        <line x1="300" y1="130" x2="160" y2="200" />
+        <line x1="300" y1="130" x2="520" y2="80" />
+        <line x1="820" y1="90" x2="1000" y2="170" />
+        <line x1="820" y1="90" x2="960" y2="40" />
+      </g>
+      <g fill="#a78bfa">
+        <circle class="animate-nodepulse" cx="100" cy="60" r="3" />
+        <circle class="animate-nodepulse" cx="300" cy="130" r="4" />
+        <circle class="animate-nodepulse" cx="160" cy="200" r="3" />
+        <circle class="animate-nodepulse" cx="520" cy="80" r="3" />
+        <circle class="animate-nodepulse" cx="820" cy="90" r="3.5" />
+        <circle class="animate-nodepulse" cx="1000" cy="170" r="3" />
+        <circle class="animate-nodepulse" cx="960" cy="40" r="3" />
+      </g>
+    </svg>
+  ) : (
+    <svg
+      class="pointer-events-none absolute inset-0 h-full w-full opacity-75"
+      viewBox="0 0 1200 560"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <g stroke="#8b5cf6" stroke-width="1" opacity="0.35">
+        <line x1="120" y1="90" x2="340" y2="180" />
+        <line x1="340" y1="180" x2="180" y2="300" />
+        <line x1="340" y1="180" x2="560" y2="120" />
+        <line x1="560" y1="120" x2="820" y2="170" />
+        <line x1="820" y1="170" x2="1040" y2="80" />
+        <line x1="820" y1="170" x2="980" y2="290" />
+        <line x1="180" y1="300" x2="260" y2="460" />
+        <line x1="560" y1="120" x2="620" y2="340" />
+        <line x1="620" y1="340" x2="820" y2="420" />
+        <line x1="820" y1="420" x2="980" y2="290" />
+        <line x1="620" y1="340" x2="440" y2="440" />
+      </g>
+      <g fill="#a78bfa">
+        <circle class="animate-nodepulse" cx="120" cy="90" r="3" />
+        <circle class="animate-nodepulse" cx="340" cy="180" r="4" />
+        <circle class="animate-nodepulse" cx="180" cy="300" r="3" />
+        <circle class="animate-nodepulse" cx="560" cy="120" r="3.5" />
+        <circle class="animate-nodepulse" cx="820" cy="170" r="4" />
+        <circle class="animate-nodepulse" cx="1040" cy="80" r="3" />
+        <circle class="animate-nodepulse" cx="980" cy="290" r="3" />
+        <circle class="animate-nodepulse" cx="260" cy="460" r="3" />
+        <circle class="animate-nodepulse" cx="620" cy="340" r="3.5" />
+        <circle class="animate-nodepulse" cx="820" cy="420" r="3" />
+        <circle class="animate-nodepulse" cx="440" cy="440" r="3" />
+      </g>
+    </svg>
+  )
+}

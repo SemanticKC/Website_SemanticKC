@@ -1,0 +1,71 @@
+---
+import Logo from "./Logo.astro";
+
+const year = new Date().getFullYear();
+
+const services = [
+  { href: "/services#builds", label: "Custom Site Builds" },
+  { href: "/services#self-editable", label: "Self-Editable Content" },
+  { href: "/services#hosting", label: "Low-Overhead Hosting" },
+];
+---
+
+<footer class="mt-8">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="rounded-t-3xl border border-b-0 border-line bg-card px-6 py-10 sm:px-10 sm:py-12">
+      <!--
+        Grid children need `min-w-0`: CSS Grid items default to
+        `min-width: auto`, which lets an unbreakable string (a full email
+        address, a long label) force its column — and on narrow viewports
+        the whole footer — wider than the screen instead of wrapping. This
+        is the root cause of the overflow bug Sean caught in the mockup.
+        `min-w-0` lets each column shrink to the grid track's width so text
+        wraps normally; `break-words` on top of that handles the email
+        address specifically, since it has no natural break points.
+      -->
+      <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="min-w-0">
+          <a href="/" class="mb-4 inline-flex">
+            <Logo size={26} />
+          </a>
+          <p class="text-sm leading-relaxed text-white/60">
+            Custom, fast, low-maintenance websites for local service businesses.
+          </p>
+        </div>
+
+        <div class="min-w-0">
+          <h3 class="font-display mb-3 text-xs font-semibold uppercase tracking-wide text-accent-300">Services</h3>
+          <ul class="space-y-2 text-sm">
+            {services.map((s) => (
+              <li><a href={s.href} class="text-white/60 hover:text-white">{s.label}</a></li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="min-w-0">
+          <h3 class="font-display mb-3 text-xs font-semibold uppercase tracking-wide text-accent-300">Company</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/process" class="text-white/60 hover:text-white">How We Work</a></li>
+            <li><a href="/work" class="text-white/60 hover:text-white">Case Study</a></li>
+            <li><a href="/contact" class="text-white/60 hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="min-w-0">
+          <h3 class="font-display mb-3 text-xs font-semibold uppercase tracking-wide text-accent-300">Contact</h3>
+          <ul class="space-y-2 text-sm">
+            <li class="break-words">
+              <a href="mailto:admin@semantickc.com" class="text-white/60 hover:text-white">admin@semantickc.com</a>
+            </li>
+            <li class="break-words text-white/50">Serving the Kansas City metro</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-10 flex flex-col gap-2 border-t border-line pt-6 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
+        <p class="min-w-0 break-words">&copy; {year} SemanticKC. All rights reserved.</p>
+        <p class="min-w-0 break-words">Site content is a first draft — pending review.</p>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,27 @@
+<!-- Open Graph image. Most social crawlers prefer a rendered PNG/JPG
+     (1200x630) over raw SVG — convert to a raster export before relying on
+     it for real social-share previews. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0a0a14" />
+  <rect x="0" y="0" width="1200" height="630" fill="none" stroke="#191a2c" stroke-width="2" />
+  <g stroke="#8b5cf6" stroke-width="1.3" opacity="0.4">
+    <line x1="1030" y1="210" x2="1030" y2="105" />
+    <line x1="1030" y1="210" x2="1125" y2="157" />
+    <line x1="1030" y1="210" x2="1125" y2="263" />
+    <line x1="1030" y1="210" x2="1030" y2="315" />
+    <line x1="1030" y1="210" x2="935" y2="263" />
+    <line x1="1030" y1="210" x2="935" y2="157" />
+  </g>
+  <g fill="#a78bfa">
+    <circle cx="1030" cy="105" r="6" />
+    <circle cx="1125" cy="157" r="6" />
+    <circle cx="1125" cy="263" r="6" />
+    <circle cx="1030" cy="315" r="6" />
+    <circle cx="935" cy="263" r="6" />
+    <circle cx="935" cy="157" r="6" />
+  </g>
+  <circle cx="1030" cy="210" r="8" fill="#ffffff" />
+  <text x="80" y="300" font-family="'Sora', ui-sans-serif, system-ui, sans-serif" font-size="72" font-weight="700" fill="#ffffff">Semantic<tspan fill="#a78bfa">KC</tspan></text>
+  <text x="80" y="360" font-family="'Inter', ui-sans-serif, system-ui, sans-serif" font-size="30" fill="#a3a2b5">Custom, fast, low-maintenance websites</text>
+  <text x="80" y="400" font-family="'Inter', ui-sans-serif, system-ui, sans-serif" font-size="30" fill="#a3a2b5">for local service businesses</text>
+</svg>

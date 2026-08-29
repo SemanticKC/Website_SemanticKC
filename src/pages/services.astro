@@ -1,0 +1,80 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaBanner from "../components/CtaBanner.astro";
+import NodeGraph from "../components/NodeGraph.astro";
+
+const items = [
+  {
+    n: "01",
+    id: "builds",
+    title: "Custom Site Builds",
+    body: [
+      "Every site is built for the business it belongs to — the pages, the structure, and the copy are shaped around what your customers actually need to see before they call or request a quote. No page-builder templates with your logo dropped in.",
+      "We build every site from the ground up instead of stacking a pile of plugins on top of a generic platform — that's why pages load fast and tend to rank well in search, without the slowdowns and glitches that come from off-the-shelf software fighting itself.",
+    ],
+  },
+  {
+    n: "02",
+    id: "self-editable",
+    title: "Self-Editable Content (When You Want It)",
+    body: [
+      "Some clients want to update their own photos, services, and testimonials without waiting on a developer. For those builds, we add a simple, private control panel that covers exactly the content you'll actually need to update — nothing extra to learn. See the Elite Midwest Integrators case study for a real example of this in action.",
+      "Other clients would rather we maintain the content directly and keep the build itself simpler and cheaper to run. Both are legitimate choices — we'll help you figure out which one actually fits how your business operates, rather than defaulting to whichever is easier for us to build.",
+    ],
+  },
+  {
+    n: "03",
+    id: "hosting",
+    title: "Low-Overhead Hosting",
+    body: [
+      "A lot of small-business sites come with a recurring software subscription that exists mainly to justify itself. Where it makes sense, we set clients up with hosting that doesn't carry an unnecessary monthly fee — you own your domain and your hosting account outright, so nothing about your site depends on a company that could change its pricing or terms on you later.",
+      "Where an all-in-one hosting platform genuinely is the better fit for your situation, we'll say so directly instead of pushing an independent setup that doesn't match how hands-on you want to be.",
+    ],
+  },
+];
+---
+
+<Layout
+  title="Services"
+  description="Custom website builds, self-editable content options, and low-overhead hosting for local service businesses in the Kansas City area."
+>
+  <section class="relative overflow-hidden px-4 py-20 text-center sm:px-6 sm:py-24 lg:px-8">
+    <NodeGraph compact />
+    <div class="relative mx-auto max-w-3xl">
+      <p class="font-display mb-4 text-sm font-bold uppercase tracking-widest text-accent-300">Services</p>
+      <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+        One Kind of Work, Done Well
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-white/65">
+        SemanticKC does one thing: custom website builds for local service businesses. Not a menu of
+        forty add-on services — just the parts of a web project that actually move the needle for a
+        business like yours.
+      </p>
+    </div>
+  </section>
+
+  <section class="px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
+    <div class="mx-auto flex max-w-5xl flex-col gap-6">
+      {items.map((item) => (
+        <div id={item.id} class="scroll-mt-28 rounded-3xl border border-line bg-card p-7 sm:p-10">
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-10">
+            <div class="sm:col-span-1">
+              <span class="font-display inline-flex h-10 w-10 items-center justify-center rounded-full border border-line bg-accent-500/15 font-bold text-accent-300">
+                {item.n}
+              </span>
+              <h2 class="mt-4 text-2xl font-bold text-white">{item.title}</h2>
+            </div>
+            <div class="space-y-4 text-white/65 leading-relaxed sm:col-span-2">
+              {item.body.map((p) => <p>{p}</p>)}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <CtaBanner
+    heading="Not sure which setup fits your business?"
+    subheading="That's a normal first question — let's talk through it before you decide anything."
+  />
+</Layout>

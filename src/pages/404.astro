@@ -1,0 +1,31 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NodeGraph from "../components/NodeGraph.astro";
+---
+
+<Layout title="Page Not Found" description="The page you're looking for doesn't exist.">
+  <section class="relative overflow-hidden px-4 py-28 text-center sm:px-6 sm:py-36 lg:px-8">
+    <NodeGraph compact />
+    <div class="relative mx-auto max-w-2xl">
+      <p class="font-display mb-4 text-sm font-bold uppercase tracking-widest text-accent-300">Error 404</p>
+      <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">Page Not Found</h1>
+      <p class="mt-5 text-lg text-white/65">
+        The page you're looking for doesn't exist, or may have moved. Let's get you back on track.
+      </p>
+      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href="/"
+          class="w-full rounded-full bg-accent-500 px-8 py-3.5 text-base font-bold text-white transition-colors hover:bg-accent-600 sm:w-auto"
+        >
+          Back to Home
+        </a>
+        <a
+          href="/contact"
+          class="w-full rounded-full border border-line px-8 py-3.5 text-base font-bold text-white transition-colors hover:bg-white/5 sm:w-auto"
+        >
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Sora", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /*
+   * "Network" design direction — near-black with a violet undertone.
+   * Ported from design-templates/05-network/index.html's :root variables.
+   * Token names kept as brand- and accent- to match the existing
+   * convention used across Header/Footer/CtaBanner/pages, just repointed
+   * to the new palette rather than introducing a second parallel scheme.
+   */
+  --color-brand-950: #0a0a14; /* page background */
+  --color-brand-900: #12121f; /* secondary background / gradients */
+  --color-brand-800: #191a2c; /* tertiary background */
+  --color-brand-700: #22233a; /* hover / raised states */
+
+  /* Card panel background — distinct from the page background so every
+     content block reads as a floating rounded-3xl/2xl card, per Network. */
+  --color-card: #171826;
+
+  /* Hairline border used on every card/pill — translucent violet, not gray. */
+  --color-line: rgba(167, 139, 250, 0.18);
+
+  /* Base body copy color (near-white with a slight violet-gray tint). */
+  --color-ink: #e7e6f0;
+
+  /* Violet accent family (replaces the old signal-green accent). */
+  --color-accent-300: #a78bfa;
+  --color-accent-500: #8b5cf6;
+  --color-accent-600: #7c3aed;
+
+  --animate-nodepulse: nodepulse 3s ease-in-out infinite;
+}
+
+@keyframes nodepulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-brand-950);
+  color: var(--color-ink);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+}

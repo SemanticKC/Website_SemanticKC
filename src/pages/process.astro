@@ -1,0 +1,81 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaBanner from "../components/CtaBanner.astro";
+import NodeGraph from "../components/NodeGraph.astro";
+
+const steps = [
+  {
+    n: "01",
+    title: "Discovery",
+    body: "A short conversation about your business, who your customers are, and what you actually need the site to do — generate leads, explain your services, build trust before someone calls. We also talk through whether you want self-editable content or a simpler, developer-maintained setup.",
+  },
+  {
+    n: "02",
+    title: "Build",
+    body: "We design and build the site in stages you can see as it comes together, not a single reveal at the end. You'll get a working preview to react to well before launch, so changes happen while they're still cheap to make.",
+  },
+  {
+    n: "03",
+    title: "Launch",
+    body: "Once you've signed off on the content and the site checks out — fast load times, working contact paths, correct info — we handle getting it live on your domain.",
+  },
+  {
+    n: "04",
+    title: "Aftercare",
+    body: "After launch, small fixes and questions don't require a new contract every time. For self-editable builds, you're running day-to-day updates yourself; for everything else, we're a message away.",
+  },
+];
+---
+
+<Layout
+  title="How We Work"
+  description="A short, honest description of how a SemanticKC engagement goes: discovery, build, launch, and aftercare."
+>
+  <section class="relative overflow-hidden px-4 py-20 text-center sm:px-6 sm:py-24 lg:px-8">
+    <NodeGraph compact />
+    <div class="relative mx-auto max-w-3xl">
+      <p class="font-display mb-4 text-sm font-bold uppercase tracking-widest text-accent-300">Process</p>
+      <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+        How We Work
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-white/65">
+        No mystery process, no hidden steps. Here's honestly how an engagement goes, start to finish.
+      </p>
+    </div>
+  </section>
+
+  <section class="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
+    <div class="mx-auto max-w-3xl space-y-5">
+      {steps.map((s) => (
+        <div class="flex min-w-0 gap-5 rounded-3xl border border-line bg-card p-6 sm:gap-6 sm:p-8">
+          <div class="shrink-0">
+            <span class="font-display flex h-12 w-12 items-center justify-center rounded-full border border-line bg-accent-500/15 font-bold text-accent-300">
+              {s.n}
+            </span>
+          </div>
+          <div class="min-w-0">
+            <h2 class="text-xl font-bold text-white">{s.title}</h2>
+            <p class="mt-2 leading-relaxed text-white/60">{s.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
+    <div class="mx-auto max-w-3xl rounded-3xl border border-line bg-card px-6 py-10 text-center sm:px-10">
+      <p class="leading-relaxed text-white/60">
+        <!-- DRAFT: timelines and pricing are intentionally not listed here yet —
+             pending Sean's input on what to commit to publicly. -->
+        Timelines and pricing depend on scope, so we haven't listed fixed numbers here — that's part
+        of the discovery conversation, not something we'd want to guess at on a page you're reading
+        before we've talked.
+      </p>
+    </div>
+  </section>
+
+  <CtaBanner
+    heading="Ready to start with a discovery conversation?"
+    subheading="No commitment required to have that first conversation."
+  />
+</Layout>

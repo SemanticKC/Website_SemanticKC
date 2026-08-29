@@ -1,0 +1,109 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaBanner from "../components/CtaBanner.astro";
+import NodeGraph from "../components/NodeGraph.astro";
+
+const highlights = [
+  {
+    title: "Updates Go Live Instantly",
+    body: "When the owner edits a photo or updates a service, the change shows up on the live site right away — no waiting on a developer, no delay, no extra step.",
+  },
+  {
+    title: "A Simple Way to Manage Content",
+    body: "We built a private control panel just for this business, covering services, project photos, testimonials, and the homepage slideshow. It only does what the owner actually needs — not a generic tool full of features he'll never touch.",
+  },
+  {
+    title: "Reliable Hosting, Owned by the Client",
+    body: "The site runs on hosting the owner controls directly, instead of renting space on a platform with its own recurring subscription — steady uptime, with no outside company that can change the deal later.",
+  },
+  {
+    title: "Lead Capture Built In",
+    body: "A contact form that emails the business directly and logs every submission, so no inquiry depends solely on an email server behaving.",
+  },
+];
+---
+
+<Layout
+  title="How We Build: Elite Midwest Integrators"
+  description="A detailed walkthrough of how SemanticKC approaches a build, illustrated by Elite Midwest Integrators — the technical decisions, the content-management setup, and the hosting choice, explained in plain terms."
+>
+  <section class="relative overflow-hidden px-4 py-20 text-center sm:px-6 sm:py-24 lg:px-8">
+    <NodeGraph compact />
+    <div class="relative mx-auto max-w-3xl">
+      <p class="font-display mb-4 text-sm font-bold uppercase tracking-widest text-accent-300">How We Build</p>
+      <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+        Our Process, Walked Through One Real Build
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-white/65">
+        This page isn't a portfolio grid — it's a detailed look at how we approach every engagement,
+        using Elite Midwest Integrators, our first real client build, as the concrete example. As we
+        take on more clients, more of these will get added here.
+      </p>
+    </div>
+  </section>
+
+  <section class="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
+    <div class="mx-auto max-w-3xl rounded-3xl border border-line bg-card px-6 py-10 sm:px-10">
+      <h2 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">The Situation</h2>
+      <p class="mt-5 leading-relaxed text-white/65">
+        Elite Midwest Integrators needed a site that would build trust with commercial clients
+        evaluating a security/network systems vendor, generate quote requests, and let the owner
+        update project photos, testimonials, and service listings without going through a developer
+        for every small change.
+      </p>
+    </div>
+  </section>
+
+  <section class="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
+    <div class="mx-auto max-w-5xl">
+      <h2 class="mb-10 text-center text-2xl font-bold tracking-tight text-white sm:text-3xl">
+        What Was Built
+      </h2>
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        {highlights.map((h) => (
+          <div class="min-w-0 rounded-2xl border border-line bg-card p-6">
+            <h3 class="font-bold text-white">{h.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/60">{h.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
+    <div class="mx-auto max-w-3xl rounded-3xl border border-line bg-card px-6 py-10 sm:px-10">
+      <h2 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">Why This Approach</h2>
+      <p class="mt-5 leading-relaxed text-white/65">
+        This is the same team and process building SemanticKC's own site — the difference is that
+        Elite Midwest Integrators is a non-technical client who needed to run day-to-day content
+        updates themselves, which is why that build includes a full content-management panel and
+        this one deliberately doesn't. The right setup depends on who's maintaining the site day to
+        day, not on defaulting to the same approach every time.
+      </p>
+      <p class="mt-5 leading-relaxed text-white/65">
+        <!-- DRAFT: no outcome metrics (traffic, leads, conversion) are listed
+             here — we haven't fabricated numbers, and real figures should
+             only go in once Sean confirms what's shareable. -->
+        We're intentionally not listing traffic or lead numbers here — this section describes the
+        build itself, not results, until there are real, confirmed figures worth sharing.
+      </p>
+      <p class="mt-5 leading-relaxed text-white/65">
+        <!-- Case-study framing note: this is currently our one completed
+             client build. This page is written to walk through our
+             methodology using that build as a concrete example, rather
+             than presenting it as one entry in a larger portfolio we
+             don't yet have — see the intro above the case study for the
+             explicit framing. -->
+        Elite Midwest Integrators is our first client build, and right now our only one — we're not
+        going to pad this page with work we haven't actually done. What we can show you is exactly
+        how we think through a build, start to finish, with a real example instead of a hypothetical.
+        That's the point of this page.
+      </p>
+    </div>
+  </section>
+
+  <CtaBanner
+    heading="Want a site built the same way?"
+    subheading="Every engagement starts with a conversation about what your business actually needs."
+  />
+</Layout>
