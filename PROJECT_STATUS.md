@@ -113,6 +113,24 @@ Sean confirmed option C. **Applied**: all 12 prose sections (`max-w-3xl` → `ma
 
 This closes out the nav-width matching request end to end — investigated, tradeoff flagged, Sean decided, shipped, independently verified live. No open items remain from this round.
 
+## Footer disclaimer regression — real cause found and fixed (2026-09-06)
+
+The "Site content is a first draft — pending review." line, believed removed and verified live earlier in this session, was confirmed back on production by the top-level session via a fresh `curl`. Investigated properly before re-deleting blind, per Sean's explicit instruction not to just re-flag/re-guess:
+
+**Root cause, confirmed via `git log`/`git blame`/`git status` on `src/components/Footer.astro`, not guessed:**
+- `git log --all -- src/components/Footer.astro` shows exactly **one** commit ever touched this file: the initial commit (`e9b2652`, 2026-08-28), which *included* the disclaimer line. No later commit added it back — there was no merge, no revert, no stale-branch deploy. It was never actually removed from any commit that reached `main`.
+- `git status` at investigation time showed `src/components/Footer.astro` as **modified but unstaged** — a local working-tree edit removing the line existed on disk, but had never been `git add`ed, committed, or pushed.
+- Conclusion: the earlier round's "removed and verified live via direct curl and a grep of the built dist" was real, but it verified a **local** build/dist (built from the uncommitted working-tree edit), not actual production. Production is served via GitHub Pages, built by GitHub Actions off pushes to `main` — since the edit never reached `main`, production had been serving the original, disclaimer-including file continuously since 2026-08-28. This was never a regression via reintroduction; the fix simply never shipped the first time. No duplicate Footer component exists (`find src -iname "*footer*"` returns only the one file) and no second explanation was needed.
+
+**Fix, shipped through the real pipeline this time:**
+- Confirmed the existing uncommitted edit was correct (removes exactly the one `<p>` line, nothing else) via `git diff`.
+- Clean local rebuild (`rm -rf dist .astro && npm run build`), grepped the fresh `dist/` output for "first draft"/"pending review" — zero matches, confirming the edit is complete before shipping it.
+- Committed (`527da1f`) with a message documenting the actual root cause, and pushed directly to `main` — this repo's established pattern (no PR gate, same as every prior deploy round in this project).
+- Confirmed via the real GitHub Actions checks API that the run for commit `527da1f` specifically completed with `conclusion: success` (polled until `status: completed`, not just "latest run is green").
+- Confirmed live on the real production domain, not the Actions log: fetched `https://semantickc.com/` and all 4 other pages (`/work/`, `/services/`, `/process/`, `/contact/`) directly — the disclaimer line is absent from all 5 pages, the footer still renders its copyright line correctly (nothing over-deleted), and response headers on the homepage showed `Age: 0` / `x-cache: MISS` / a fresh `last-modified` matching the deploy timestamp, ruling out a stale cache hit being mistaken for a live check.
+
+**Standing takeaway to prevent a third round of this:** when a fix is "verified live" earlier in a session, that verification must be checked for what it actually verified (a local build/preview, or the real deployed production domain) before trusting it in a later round — `git log`/`git status` on the file in question is the fast, authoritative way to settle this, and should be the first move on any "this was already fixed but it's back" report, not a re-guess or an assumed re-deletion.
+
 ## Known playbook additions from this project
 
 `Websites/_site-build-playbook.md` had no GitHub Pages deploy guidance before this — worth adding two real gotchas from this rollout: (1) GitHub's default Actions runner Node version can be older than a project's `engines` requirement, causing a first-run failure that isn't visible until the workflow actually runs; pin the Node version explicitly in the workflow rather than relying on the default. (2) A static site configured with `site:` set to its real custom domain (no `base` path) will have root-absolute asset paths that 404 on any interim subpath preview URL (like the default `<user>.github.io/<repo>/` URL) — this is expected and correct, not a bug, and shouldn't be "fixed" by adding a `base`, which would break the real domain-root deployment it's actually configured for.
